@@ -23,16 +23,6 @@ typedef void (^AddPassResultBlock)(PKPass *pass, BOOL added);
 @synthesize lastPass;
 @synthesize lastAddPassCallback;
 
-- (BOOL)shouldOverrideLoadWithRequest:(NSURLRequest*)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    if(PKPassLibrary.isPassLibraryAvailable && [request.URL.pathExtension isEqualToString:@"pkpass"]) {
-        [self downloadPass:request.URL success:nil error:nil];
-        return YES;
-    }
-    
-    return NO;
-}
-
 + (BOOL)available
 {
     BOOL available = [PKPassLibrary isPassLibraryAvailable];
