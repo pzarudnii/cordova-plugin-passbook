@@ -169,11 +169,7 @@ typedef void (^AddPassResultBlock)(PKPass *pass, BOOL added);
 
     if([[[PKPassLibrary alloc] init] containsPass:pass]) {
         if(errorBlock) {
-            *error = [NSError errorWithDomain:@"some_domain"
-                                                        code:100
-                                                    userInfo:@{
-                                                                NSLocalizedDescriptionKey:@"Something went wrong"
-                                                    }];
+            *error = [NSError code:100 userInfo:nil];
             errorBlock(error);
         }
         return;
