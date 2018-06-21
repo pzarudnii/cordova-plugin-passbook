@@ -166,6 +166,16 @@ typedef void (^AddPassResultBlock)(PKPass *pass, BOOL added);
         }
         return;
     }
+
+    if([[[PKPassLibrary alloc] init] containsPass:pass]) {
+        if(errorBlock) {
+            NSDictionary *details = @{@"added": ""};
+
+            *error = [NSError errorWithDomain:@"world" code:200 userInfo:details];
+            errorBlock(error);
+        }
+        return;
+    }
     
     self.lastPass = pass;
     self.lastAddPassCallback = successBlock;
